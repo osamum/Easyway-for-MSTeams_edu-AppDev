@@ -69,11 +69,11 @@
 
 ## 目次
 1. [**Microsoft Teams Education 用アプリ開発について**](Intro.md)
-2. Graph API を使用した Teams Education の操作
+2. 演習1 ) Graph API を使用した Teams Education の操作
     1. Teams Education UI に表示される要素名と、Graph API での名前の対応について
     2. Teams Education 固有のオブジェクトの列挙とドリル ダウン
     3. Teams Education 固有のオブジェクトの新規作成
     4. Teams Education 固有のオブジェクトの操作
-3. Teams タブ アプリの作成 
+3. 演習2) Teams タブ アプリの作成 
     1. SSO とパーソナルタブ アプリの作成
     2. チーム (構成可能) タブ アプリの作成
