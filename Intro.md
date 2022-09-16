@@ -2,7 +2,7 @@
 
 Microsoft Teams for Education は、教育機関むけに提供される Microsoft Teams であり、標準の Teams にはない、クラス運営やリモート授業、テストといった教育業務のための機能が追加されています。
 
-Microsoft Teams for Education むけのアプリ開発や、機能連携を行う場合には、Microsoft Teams for Education **ならでは**の機能を把握し、利用することで重複する機能の開発を回避し、かつ効率的な開発を行うことできます。
+Microsoft Teams for Education 向けのアプリ開発や、機能連携を行う場合には、Microsoft Teams for Education **ならでは**の機能を把握し、利用することで重複する機能の開発を回避し、かつ効率的な開発を行うことできます。
 
 ## Microsoft Teams for Education の構造
 
@@ -20,16 +20,22 @@ Microsoft Teams for Education むけのアプリ開発や、機能連携を行�
 |[Microsoft Teams for Education 固有の機能](https://docs.microsoft.com/ja-jp/graph/api/resources/education-overview?view=graph-rest-1.0)|
 |他の Microsoft 365 サービスの機能|
 
-これらの機能提供元の違いは、外部から Microsoft Graph API を使用して Teams を操作使用とする際に関係してきます。
+これらの機能提供元の違いは、外部のアプリケーションから Microsoft Graph API を使用して Teams を操作使用とする際に関係してきます。
 
-たとえば、["**Teams のチャネルにファイルを添付したメッセージを投稿する**"](https://github.com/osamum/Firstway_to_MSTeamsGraphAPI/blob/master/Ex05.md)といった処理を考えた場合、まず最初に ① [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/ja-jp/azure/active-directory/develop/msal-overview) を使用してアクセストークンを入手し、それを使用して ② [Drive/DriveItem の Graph API](https://docs.microsoft.com/ja-jp/graph/api/resources/onedrive?view=graph-rest-1.0) を呼び出し、ファイルを OneDrive か SharePoint にファイルにアップロードします。アップロードの完了を待ち、③ その際に返された JSON 内の eTag 要素の値を [Teams の chatMessage](https://docs.microsoft.com/ja-jp/graph/api/chatmessage-post?view=graph-rest-1.0&tabs=http) に含め、Graph API を使用して投稿を行います。 
+たとえば、[*Teams のチャネルにファイルを添付したメッセージを投稿する](https://github.com/osamum/Firstway_to_MSTeamsGraphAPI/blob/master/Ex05.md)といったアクションを実装する場合、以下の処理を順番に行う必要があります。
+
+1. [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/ja-jp/azure/active-directory/develop/msal-overview) を使用してアクセストークンを入手
+
+2. 入手したトークンを使用して [Drive/DriveItem の Graph API](https://docs.microsoft.com/ja-jp/graph/api/resources/onedrive?view=graph-rest-1.0) を呼び出し、ファイルを OneDrive か SharePoint にファイルにアップロード
+
+3. ファイル アップロードの際に返された JSON 内の eTag 要素の値を [Teams の chatMessage](https://docs.microsoft.com/ja-jp/graph/api/chatmessage-post?view=graph-rest-1.0&tabs=http) に含めてメッセージと紐づけし、Graph API を使用して投稿 
 
 このように Teams の操作ではひとつのアクションに見えるものでも、複数のサービスの機能が組み合わされて実装されています。
 <br><br>
 
 ## Microsoft Teams と Teams for Education の違い
 
-Microsoft Teams for Education では、教職員が新しくチームを作成する場合に、あらかじめ4種類のテンプレートが用意されており、利用用途に合わせてテンプレートを選択し作成します。
+Microsoft Teams for Education では、教職員が新しくチームを作成する場合に、あらかじめ 4 種類のテンプレートが用意されており、利用用途に合わせてテンプレートを選択しチームを作成します。
 
 <img src="./images/22Sep_EduTeamsTemplate.png">
 
@@ -39,7 +45,7 @@ Microsoft Teams for Education では、教職員が新しくチームを作成�
 
 上記 4 つのチームは用途に合わせ、追加するメンバーの権限や役割、タブとして表示されるプリセットされる機能に違いがあります。
 
-中でも、**クラス** のテンプレートを使用して生成されるチームは他の 3 のチームとは大きく異なり、Microsoft Teams for Education 固有の機能が複数組み込まれています。
+中でも、[**クラス**](https://support.microsoft.com/ja-jp/topic/%E3%82%AF%E3%83%A9%E3%82%B9-%E3%83%81%E3%83%BC%E3%83%A0%E3%81%A7%E5%A7%8B%E3%82%81%E3%82%8B-6b5fd708-35b9-4caf-b66e-d8f2468e4fd5) のテンプレートを使用して生成されるチームは他の 3 のチームとは大きく異なり、Microsoft Teams for Education 固有の機能が複数組み込まれています。
 
 また、固有の機能であるだけに **クラス** は Graph API も[個別のもの](https://docs.microsoft.com/ja-jp/graph/api/resources/educationclass?view=graph-rest-1.0)が提供されています。
 
@@ -85,9 +91,7 @@ Microsoft Teams for Education と既存サービスを連携する方法は大�
 
 ### 1. Microsoft Graph API を使用した部分的な連携
 
-Microsoft Graph API は Office 365 のような Microsoft 365 に含まれるさまざまサービスを、アプリケーションのリソースとして利用するための仕組みを提供します。
-
-この Microsoft Graph API には Microsoft Teams for Education 固有のリソースも含まれており、さまざまな開発言語の SDK や REST API のエンドポイントを介して利用することができます。
+Microsoft Graph API は Office 365 のような Microsoft 365 に含まれるさまざまサービスを、アプリケーションのリソースとして利用するための仕組みを提供します。この Microsoft Graph API には [Microsoft Teams for Education 固有のリソース](https://docs.microsoft.com/ja-jp/graph/api/resources/education-overview?view=graph-rest-1.0)も含まれており、さまざまな開発言語の SDK や REST API のエンドポイントを介して利用することができます。
 
 Microsoft Teams for Education を Graph API を介して操作することで、既存のサービスやアプリケーション側からの Microsoft Teams for Education リソースの操作が可能になります。
 
@@ -102,9 +106,16 @@ Microsoft Teams はアプリケーションとしての機能だけではなく�
 
 Teams アプリの形態には、タブ アプリ、ボット アプリ、メッセージング拡張やコネクターといったものがありますが、既存のサービスを統合する場合は、サービス側が画面や API を Teams プラットフォームの仕様に準じた形態で提供する必要があります。
 
+たとえば、既存のサービスが Web のページ (UI) を提供していれは Teams タブ アプリに、REST API であれば、それをバックエンド サービスとして利用したボットやメッセージ拡張を開発できますし、Teams のチャネル側から Webhook 用のエンドポイントを払い出して受信 Webhook を、または既存のサービス側で Webhook のエンドポイントが用意されていればチャット画面からそれを呼び出す送信 Webhook も作成できます。
 
+<img src="./images/22Sep_TeamsApp_from_ExistService.png">
 
+このチュートリアルでは、Microsoft Teams との SSO (Single Sign On) の機能を持ち、Graph API を使用して Teams for Education のリソースを操作するタブ アプリケーションを作成します。
+<br><br>
 
+👉 [演習1 ) Graph API を使用した Teams Education の操作](Ex01.md)へ
+
+[戻る](Readme.md) 👈
 
 
 上記、機能と機能提供元の表からもわかるとおり、Microsoft Teams for Education のデスクトップ クライアント上にメニューが存在していても、それらの機能は複数の Microsoft 365 のサービスが提供しています。
