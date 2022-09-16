@@ -111,7 +111,7 @@ Teams アプリの形態には、タブ アプリ、ボット アプリ、メッ
 
 ## 既存サービスとの機能連携の方向性
 
-ここまでの説明から機能連携の方向性としては以下のようになります。
+ここまでの説明から、機能連携の方向性としては以下のようになります。
 
 | 連携方法 | 機能連携の方向性 |
 | ---- |---- |
@@ -121,15 +121,15 @@ Teams アプリの形態には、タブ アプリ、ボット アプリ、メッ
 
 このチュートリアルでは、演習 1) で、Graph API を使用した Microsoft Teams for Education リソースの一覧の取得や参照、新規作成といった機能を SPA (Single Page Application) として実装し、演習 2) で、同 SPA を　Microsoft Teams との SSO (Single Sign On) の機能を持ち、Graph API を使用して Teams for Education のリソースを操作するタブ アプリケーションを作成します。
 
-この 2 つの演習を完了することにより、Microsoft Teams for Education と既存のサービスを連携するための具体的な手順や知識を身に着けるみとができます。
+この 2 つの演習を完了することにより、Microsoft Teams for Education と既存のサービスを連携するための具体的な手順や知識を身に着けることができます。
 
 <br><br>
 
 
 _ _ _
-👉 [演習1 ) Graph API を使用した Teams Education の操作](Ex01.md)へ
+👉 [**演習1 ) Graph API を使用した Teams Education の操作**](Ex01.md)へ
 
-[戻る](Readme.md) 👈
+[**戻る**](Readme.md) 👈
 
 
 
