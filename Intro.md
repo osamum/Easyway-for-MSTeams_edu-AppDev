@@ -112,17 +112,11 @@ Teams アプリの形態には、タブ アプリ、ボット アプリ、メッ
 
 このチュートリアルでは、Microsoft Teams との SSO (Single Sign On) の機能を持ち、Graph API を使用して Teams for Education のリソースを操作するタブ アプリケーションを作成します。
 <br><br>
-
+_ _ _
 👉 [演習1 ) Graph API を使用した Teams Education の操作](Ex01.md)へ
 
 [戻る](Readme.md) 👈
 
 
-上記、機能と機能提供元の表からもわかるとおり、Microsoft Teams for Education のデスクトップ クライアント上にメニューが存在していても、それらの機能は複数の Microsoft 365 のサービスが提供しています。
 
-よって、外部プログラムからこれら Microsoft Teams for Education の機能にアクセスするには、機能提供元のサービスの API を使用します。
-
-また、Microsoft Teams for Education の全ての機能が API を介して使用できるわけでもなく、そもそも機能の提供元サービスが API を公開していない場合もあるので注意が必要です。
-
-たとえば上記の表の Insights、Reflect はこのドキュメントの執筆時点 (2022 年 9 月) で API が公開されていませんし、**課題**を作成する際に選択できる**クイズ** は Microsoft Forms が機能を提供していますが、API を利用するためのドキュメントは公開されていません。
 
