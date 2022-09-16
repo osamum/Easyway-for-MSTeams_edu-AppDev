@@ -84,8 +84,8 @@ Microsoft Teams for Education では、教職員が新しくチームを作成�
 
 Microsoft Teams for Education と既存サービスを連携する方法は大まかに以下の 2 つがあります。
 
-1. Microsoft Graph API を使用した部分的な連携
-2. Teams アプリ化による機能統合
+1. [**Microsoft Graph API を使用した部分的な連携**](#1-microsoft-graph-api-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E9%83%A8%E5%88%86%E7%9A%84%E3%81%AA%E9%80%A3%E6%90%BA)
+2. [**Teams アプリ化による機能統合**](#2-teams-%E3%82%A2%E3%83%97%E3%83%AA%E5%8C%96%E3%81%AB%E3%82%88%E3%82%8B%E6%A9%9F%E8%83%BD%E7%B5%B1%E5%90%88)
 
 上記 2 つの方法についてそれぞれ概要を説明します。なお、このチュートリアルでは、ハンズオンを通して 2 つの開発方法を体験いただけます。
 
@@ -97,9 +97,6 @@ Microsoft Teams for Education を Graph API を介して操作することで、
 
 たとえば、既存のアプリケーションから　Microsoft Teams for Education　の課題を作成したり、提出された課題に対して採点し、フィードバックを返す、といったことも可能です。
 
-このチュートリアルでは、Graph API を使用した Microsoft Teams for Education リソースの一覧の取得や参照、新規作成といった機能をハンズオン用アプリケーションに実装します。
-
-
 ### 2. Teams アプリ化による機能統合
 
 Microsoft Teams はアプリケーションとしての機能だけではなく、アプリをホストするためのプラットフォームとしての機能も提供します。このプラットフォームで動作するアプリを Teams アプリと言います。
@@ -110,8 +107,25 @@ Teams アプリの形態には、タブ アプリ、ボット アプリ、メッ
 
 <img src="./images/22Sep_TeamsApp_from_ExistService.png">
 
-このチュートリアルでは、Microsoft Teams との SSO (Single Sign On) の機能を持ち、Graph API を使用して Teams for Education のリソースを操作するタブ アプリケーションを作成します。
 <br><br>
+
+## 既存サービスとの機能連携の方向性
+
+ここまでの説明から機能連携の方向性としては以下のようになります。
+
+| 連携方法 | 機能連携の方向性 |
+| ---- |---- |
+| Graph API の使用 | 既存サービスから ⇒ Teams |
+| Teams アプリ化 | Teams ⇒ 既存サービス |
+| Teams アプリ化して Graph API も使用 | 双方向 |
+
+このチュートリアルでは、演習 1) で、Graph API を使用した Microsoft Teams for Education リソースの一覧の取得や参照、新規作成といった機能を SPA (Single Page Application) として実装し、演習 2) で、同 SPA を　Microsoft Teams との SSO (Single Sign On) の機能を持ち、Graph API を使用して Teams for Education のリソースを操作するタブ アプリケーションを作成します。
+
+この 2 つの演習を完了することにより、Microsoft Teams for Education と既存のサービスを連携するための具体的な手順や知識を身に着けるみとができます。
+
+<br><br>
+
+
 _ _ _
 👉 [演習1 ) Graph API を使用した Teams Education の操作](Ex01.md)へ
 
