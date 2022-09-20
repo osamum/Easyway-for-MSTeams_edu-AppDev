@@ -69,7 +69,8 @@
 
 ## 目次
 1. [**Microsoft Teams Education 用アプリ開発について**](Intro.md)
-2. 演習1 ) Graph API を使用した Teams for Education の操作
+    - [準備) 演習に入る前の準備 - 操作するリソースの作成](Ex00.md)
+2. [演習1 ) Graph API を使用した Teams for Education の操作](Ex01.md)
     1. Teams for Education 固有のオブジェクトの列挙とドリル ダウン
     2. Teams for Education 固有のオブジェクトの新規作成
     3. Teams for Education 固有のオブジェクトの操作
