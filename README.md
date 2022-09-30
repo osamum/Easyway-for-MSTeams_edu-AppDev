@@ -36,7 +36,7 @@
     画面下部にある \[**保存**(英:Save)\] ボタンをクリックして設定を保存してください。
 
 
-* **[Visual Studio 2018 以上のエディション](https://visualstudio.microsoft.com/ja/vs/)、もしくは [Visual Studio Code](https://code.visualstudio.com/Download)**
+* **[Visual Studio Code](https://code.visualstudio.com/Download)**
 
     全体のコーディング作業で使用します。
 
