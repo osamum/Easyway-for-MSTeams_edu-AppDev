@@ -68,13 +68,15 @@
 <br />
 
 ## 目次
-1. [**Microsoft Teams Education 用アプリ開発について**](Intro.md)
+0. [**Microsoft Teams Education 用アプリ開発について**](Intro.md)
     - [準備) 演習に入る前の準備 - 操作するリソースの作成](Ex00.md)
-2. [演習1 ) Graph API を使用した Teams for Education の操作](Ex01.md)
-    1. Teams for Education 固有のオブジェクトの列挙とドリル ダウン
-    2. Teams for Education 固有のオブジェクトの新規作成
-    3. Teams for Education 固有のオブジェクトの操作
-    4. Teams for Education を操作する Single Page Application の作成
+1. [演習1 ) Graph API を使用した Teams for Education の操作](Ex01-1.md)
+    1. [Teams for Education 固有のオブジェクトの列挙とドリル ダウン](Ex01-1.md#%E6%BC%94%E7%BF%92-1-teams-for-education-%E5%9B%BA%E6%9C%89%E3%81%AE%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E5%88%97%E6%8C%99%E3%81%A8%E3%83%89%E3%83%AA%E3%83%AB-%E3%83%80%E3%82%A6%E3%83%B3)
+    2. [REST クライアント ツールを使用した Graph API の呼び出しと Teams for Education の課題の作成と割り当て](Ex01-2.md)
+2. 演習2 ) Teams for Education を操作する Single Page Application の作成
+    1. Azure Active Directory へのアプリケーションの登録
+    2. アクセストークンを取得するコードの実装
+    3. Graph API を使用した機能の実装
 3. 演習2) Teams タブ アプリの作成 
     1. SSO とパーソナルタブ アプリの作成
     2. チーム (構成可能) タブ アプリの作成
