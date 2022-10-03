@@ -16,17 +16,17 @@ Microsoft Teams for Education 向けのアプリ開発や、機能連携を行�
 
 |Microsoft Teams for Education の機能|
 | ---- |
-|[Microsoft Teams の機能](https://docs.microsoft.com/ja-jp/graph/api/resources/teams-api-overview?view=graph-rest-1.0)|
 |[Microsoft Teams for Education 固有の機能](https://docs.microsoft.com/ja-jp/graph/api/resources/education-overview?view=graph-rest-1.0)|
+|[Microsoft Teams の機能](https://docs.microsoft.com/ja-jp/graph/api/resources/teams-api-overview?view=graph-rest-1.0)|
 |他の Microsoft 365 サービスの機能|
 
 これらの機能提供元の違いは、外部のアプリケーションから Microsoft Graph API を使用して Teams を操作使用とする際に関係してきます。
 
-たとえば、[*Teams のチャネルにファイルを添付したメッセージを投稿する](https://github.com/osamum/Firstway_to_MSTeamsGraphAPI/blob/master/Ex05.md)といったアクションを実装する場合、以下の処理を順番に行う必要があります。
+たとえば、[**Teams のチャネルにファイルを添付したメッセージを投稿する**](https://github.com/osamum/Firstway_to_MSTeamsGraphAPI/blob/master/Ex05.md)といったアクションを実装する場合、以下の処理を順番に行う必要があります。
 
-1. [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/ja-jp/azure/active-directory/develop/msal-overview) を使用してアクセストークンを入手
+1. [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/ja-jp/azure/active-directory/develop/msal-overview) を使用して Azure Active Directory からアクセストークンを入手
 
-2. 入手したトークンを使用して [Drive/DriveItem の Graph API](https://docs.microsoft.com/ja-jp/graph/api/resources/onedrive?view=graph-rest-1.0) を呼び出し、ファイルを OneDrive か SharePoint にファイルにアップロード
+2. 入手したアクセストークンを使用して [Drive/DriveItem の Graph API](https://docs.microsoft.com/ja-jp/graph/api/resources/onedrive?view=graph-rest-1.0) を呼び出し、ファイルを OneDrive か SharePoint にファイルにアップロード
 
 3. ファイル アップロードの際に返された JSON 内の eTag 要素の値を [Teams の chatMessage](https://docs.microsoft.com/ja-jp/graph/api/chatmessage-post?view=graph-rest-1.0&tabs=http) に含めてメッセージと紐づけし、Graph API を使用して投稿 
 
@@ -67,7 +67,7 @@ Microsoft Teams for Education では、教職員が新しくチームを作成�
 
 さらに細かな機能では、[ルーブリック](https://support.microsoft.com/ja-jp/topic/microsoft-teams%E3%81%A7%E3%83%AB%E3%83%BC%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF%E3%81%AE%E6%8E%A1%E7%82%B9%E3%82%92%E4%BD%9C%E6%88%90%E3%81%8A%E3%82%88%E3%81%B3%E7%AE%A1%E7%90%86%E3%81%99%E3%82%8B-68292a5f-f582-4a41-8ba3-8c96288ec5ca)や[クイズ](https://support.microsoft.com/ja-jp/topic/microsoft-teams%E3%82%92%E9%80%9A%E3%81%98%E3%81%A6%E5%AD%A6%E7%94%9F%E3%81%AB%E3%82%AF%E3%82%A4%E3%82%BA%E3%82%92%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%82%8B-61524815-f5fd-4dc1-961d-dc8e680e7ab0) といったものがあり、Teams ポリシーにも [教育機関向け](https://docs.microsoft.com/ja-jp/microsoftteams/policy-packages-edu) のものが用意されています。
 
-このチュートリアルでは、Microsoft Teams for Education ならではの機能を利用した開発について紹介します。
+このチュートリアルでは、Microsoft Teams for Education ならではの機能である**クラス**を利用する開発について紹介します。
 
 一般的な Microsoft Teams アプリ開発については以下のチュートリアルをご参照ください。
 
@@ -85,7 +85,7 @@ Microsoft Teams for Education では、教職員が新しくチームを作成�
 Microsoft Teams for Education と既存サービスを連携する方法は大まかに以下の 2 つがあります。
 
 1. [**Microsoft Graph API を使用した部分的な連携**](#1-microsoft-graph-api-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E9%83%A8%E5%88%86%E7%9A%84%E3%81%AA%E9%80%A3%E6%90%BA)
-2. [**Teams アプリ化による機能統合**](#2-teams-%E3%82%A2%E3%83%97%E3%83%AA%E5%8C%96%E3%81%AB%E3%82%88%E3%82%8B%E6%A9%9F%E8%83%BD%E7%B5%B1%E5%90%88)
+2. [**Teams アプリ化による Teams への機能統合**](#2-teams-%E3%82%A2%E3%83%97%E3%83%AA%E5%8C%96%E3%81%AB%E3%82%88%E3%82%8B%E6%A9%9F%E8%83%BD%E7%B5%B1%E5%90%88)
 
 上記 2 つの方法についてそれぞれ概要を説明します。なお、このチュートリアルでは、ハンズオンを通して 2 つの開発方法を体験いただけます。
 
@@ -115,11 +115,11 @@ Teams アプリの形態には、タブ アプリ、ボット アプリ、メッ
 
 | 連携方法 | 機能連携の方向性 |
 | ---- |---- |
-| Graph API の使用 | 既存サービスから ⇒ Teams |
-| Teams アプリ化 | Teams ⇒ 既存サービス |
+| Graph API の使用 | 🧑‍💻 ⇒ 既存サービスから ⇒ Teams |
+| Teams アプリ化 | 🧑‍💻 ⇒ Teams ⇒ 既存サービス |
 | Teams アプリ化して Graph API も使用 | 双方向 |
 
-このチュートリアルでは、演習 1) で、Graph API を使用した Microsoft Teams for Education リソースの一覧の取得や参照、新規作成といった機能を SPA (Single Page Application) として実装し、演習 2) で、同 SPA を　Microsoft Teams との SSO (Single Sign On) の機能を持ち、Graph API を使用して Teams for Education のリソースを操作するタブ アプリケーションを作成します。
+このチュートリアルでは、演習 1) で、Graph API を使用した Microsoft Teams for Education リソースの一覧の取得や参照、新規作成といった機能を REST クライアントツールを使用して学習し、演習 2)では SPA (Single Page Application) の機能として実装します。演習 3) で、同 SPA を　Microsoft Teams との SSO (Single Sign On) の機能を持ち、Graph API を使用して Teams for Education のリソースを操作するタブ アプリケーションを作成します。
 
 この 2 つの演習を完了することにより、Microsoft Teams for Education と既存のサービスを連携するための具体的な手順や知識を身に着けることができます。
 
