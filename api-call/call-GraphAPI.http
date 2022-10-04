@@ -1,0 +1,110 @@
+### アクセストークンの指定
+//このコメントを演習 1-2 手順 3 の内容で置き換え 
+@token = Bearer %コピーしたアクセストークン%
+
+### Microsoft Teams for Education のクラス一覧を取得
+//このコメントを演習 1-2 手順 4 の内容で置き換え
+GET https://graph.microsoft.com/v1.0/education/classes
+Authorization: {{token}}
+
+### クラス ID の指定
+//このコメントを演習 1-2 手順 5 の内容で置き換え
+@class-id = %コピーしたクラス ID%
+
+### 任意のクラスに割り当て(課題)を下書きの状態で作成
+POST https://graph.microsoft.com/v1.0//education/classes/{{class-id}}/assignments
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "displayName": "Teams-edu Dev Handson 01",
+    "dueDateTime": "2023-06-30T14:59:00Z",
+    "instructions": {
+        "content": "ハンズオン資料の手順に沿って作業します",
+        "contentType": "html"
+    },
+    "grading": {
+        "@odata.type": "#microsoft.graph.educationAssignmentPointsGradeType",
+        "maxPoints": 50
+    },
+    "assignTo": {
+        "@odata.type": "#microsoft.graph.educationAssignmentClassRecipient"
+    },
+    "status": "draft",
+    "allowStudentsToAddResourcesToSubmission": "true"
+}
+
+
+### 作成した割り当て(課題) ID を指定
+//このコメントを演習 1-2 手順 7 の内容で置き換え 
+@assignment-id = %コピーした割り当て ID%
+
+
+### 割り当て(課題)にリンクを添付
+//このコメントを演習 1-2 手順 8 の内容で置き換え 
+POST https://graph.microsoft.com/v1.0/education/classes/{{class-id}}/assignments/{{assignment-id}}/resources
+Authorization: {{token}}
+Content-type: application/json
+
+{
+    "distributeForStudentWork": false,
+    "resource": {
+        "displayName": "Microsoft Teams オンライン & リモート学習 | Microsoft Education",
+        "link": "https://www.microsoft.com/ja-jp/education/products/teams",
+        "thumbnailPreviewUrl": null,
+        "@odata.type": "#microsoft.graph.educationLinkResource"
+    }
+}
+
+### 割り当て(課題)に添付するためのファイルをアップロードするリソースフォルダを作成
+//このコメントを演習 1-2 手順 9 の内容で置き換え 
+POST https://graph.microsoft.com/v1.0/education/classes/{{class-id}}/assignments/{{assignment-id}}/setUpResourcesFolder
+Authorization: {{token}}
+Content-Type: application/json
+
+{}
+
+### リソースフォルダのパスを指定
+//このコメントを演習 1-2 手順 10 の内容で置き換え 
+@resourcesFolderUrl = %コピーした リソースフォルダのURL%
+
+
+### 割り当て(課題)に添付するファイルをリソースフォルダーにアップロード
+//このコメントを演習 1-2 手順 11 の内容で置き換え 
+PUT {{resourcesFolderUrl}}:/MicrosoftTeamsforEducation_QuickGuide_JA-JP.pdf:/content
+Authorization: {{token}}
+Content-Disposition: form-data; name="file"; filename="MicrosoftTeamsforEducation_QuickGuide_JA-JP.pdf"
+Content-Type: application/pdf
+
+< %アップロードするファイルのパス%
+
+
+### ファイルの位置を示す odataid を指定
+//このコメントを演習 1-2 手順 12 の内容で置き換え 
+@itemid = %返された JSON の id%
+@drivepath = %//返された JSON の parentReference.path の値の "/root:" より前の部分%
+@odataid = https://graph.microsoft.com/v1.0{{drivepath}}/items/{{itemid}}
+
+### 割り当て(課題)にリソースフォルダーのファイルを添付
+//このコメントを演習 1-2 手順 13 の内容で置き換え 
+POST https://graph.microsoft.com/v1.0/education/classes/{{class-id}}/assignments/{{assignment-id}}/resources
+Authorization: {{token}}
+Content-type: application/json
+
+{
+    "distributeForStudentWork":false,
+    "resource": {
+        "displayName": "MicrosoftTeamsforEducation_QuickGuide_JA-JP.pdf",
+        "file": {
+            "odataid": "{{odataid}}"
+        },
+        "@odata.type": "#microsoft.graph.educationFileResource"
+    }
+}
+
+
+### 割り当(課題) の発行
+//このコメントを演習 1-2 手順 14 の内容で置き換え 
+POST https://graph.microsoft.com/v1.0/education/classes/{{class-id}}/assignments/{{assignment-id}}/publish
+Authorization: {{token}}
+Content-type: application/json
