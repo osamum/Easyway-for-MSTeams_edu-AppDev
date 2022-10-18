@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams for Education ID Explorer</title>
+    <link rel="stylesheet" href="index.css">
+
+    <!-- msal.min.jsはmsal.jsの代わりに使用できます。デバッグを容易にするためにmsal.jsが含まれています -->
+    <script src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.js"
+        integrity="sha384-o4ufwq3oKqc7IoCcR08YtZXmgOljhTggRwxP2CLbSqeXGtitAxwYaUln/05nJjit"
+        crossorigin="anonymous"></script>
+
+    <!-- 信頼性を確保するために、マイクロソフトは 2 つ目の CDN を提供しています -->
+    <script type="text/javascript">
+        if (typeof Msal === 'undefined') document.write(unescape("%3Cscript src='https://alcdn.msftauth.net/browser/2.30.0/js/msal-browser.js' type='text/javascript' crossorigin='anonymous' %3E%3C/script%3E"));
+    </script>
+    <script src="aadAuth.js"></script>
+    <script src="graph.js"></script>
+
+</head>
+
+<body>
+    <div id="ground">
+        <dialog id="display"></dialog>
+        <div style="display:flex;">
+            <div>
+                <h1>Teams for Education ID Explorer</h1>
+            </div>
+            <div id="loginedArea" style="display: none;">
+                <a href="javascript:showProfileDialog()">アカウント情報の表示</a>
+                <br>
+                <a id="logOffButton" href="javascript:logoff()">ログオフ</a>
+            </div>
+            <div id="beforeLogineArea" style="display: block; ">
+                <a id="logOnButton" href="javascript:logon()">ログイン</a>
+            </div>
+        </div>
+        <div id="manipulateArea">
+            <div id="treeView"></div>
+            <div id="restAPI_area">
+                <div>
+                    <label for="reqEndpoint">URI : </label><input type="text" id="reqEndpoint" ></span>
+                </div>
+                <div >Response body :</div>
+                <textarea title="Response body" id="responseView"></textarea>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="index.js"></script>
+
+</html>
