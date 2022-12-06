@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<meta name="viewport" content="width=device-width">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Team Tab Config.</title>
+    <!-- Microsoft Teams JavaScript API (via CDN) -->
+    <script src="https://statics.teams.microsoft.com/sdk/v1.5.2/js/MicrosoftTeams.min.js"
+        crossorigin="anonymous"></script>
+    <!--SDK v2.0 が正しく動作しないため v1.5.2 を使用-->
+</head>
+
+<body>
+    <h1>Microsoft Teams チーム タブ<br>設定ページ サンプル</h1>
+
+    <div id="currentTeam"></div>
+    <div id="currentChannel"></div>
+    <div id="currentLocale"></div>
+    <br>
+
+    タブの背景色 :
+    <!--タブとして追加されるページの背景色を指定-->
+    <select id="colorSelector" title="color" >
+        <option value="white">白</option>
+        <option value="gainsboro">灰</option>
+        <option value="skyblue">青</option>
+        <option value="yellow">黄</option>
+    </select>
+
+    <script>
+        let colorName = '';
+        microsoftTeams.initialize();
+        microsoftTeams.settings.registerOnSaveHandler((saveEvent) => {
+            microsoftTeams.settings.setSettings({
+                entityId: 'myteamtab',
+                contentUrl: 'https://ngrokのドメイン名/index.html' + colorName,
+                suggestedDisplayName: 'My first Team Tab',
+                websiteUrl: '',
+                removeUrl: 'https://ngrokのドメイン名/remove.html',
+            });
+            saveEvent.notifySuccess();
+        });
+        microsoftTeams.settings.setValidityState(true);
+        document.getElementById('colorSelector').addEventListener('change', (evnt) => {
+            colorName = '?' + evnt.target.value;
+        });
+
+        document.getElementById('currentTeam').innerText = `現在の Team Id: ${getValueFromQueryString('team')}`;
+        document.getElementById('currentChannel').innerText = `現在の Channel Id: ${getValueFromQueryString('channel')}`;
+        document.getElementById('currentLocale').innerText = `現在の locale: ${getValueFromQueryString('locale')}`;
+        
+
+        function getValueFromQueryString(paramName) {
+            const urlParams = new URLSearchParams(document.location.search.substring(1));
+            return urlParams.get(paramName);
+        }
+    </script>
+</body>
+
+</html>
+

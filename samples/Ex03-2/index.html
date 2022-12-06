@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<meta name="viewport" content="width=device-width">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Teams Tab App Sample</title>
+    <style>
+        table {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .context-data {
+            color: blue;
+        }
+
+        .other-data {
+            display: none;
+        }
+
+        td {
+            border: 1px solid;
+        }
+
+    </style>
+    <!-- Microsoft Teams JavaScript Client 2.0 SDK  (via CDN) -->
+    <script src="https://res.cdn.office.net/teams-js/2.2.0/js/MicrosoftTeams.min.js"
+        integrity="sha384yBjE++eHeBPzIg+IKl9OHFqMbSdrzY2S/LW3qeitc5vqXewEYRWegByWzBN/chRh" crossorigin="anonymous">
+        </script>
+</head>
+
+<body>
+    <h1>Microsoft Teams Tab App サンプル</h1>
+    <h2>Teams のユーザーとチャネルコンテキスト</h2>
+    <p>以下にはプラグインされた Teams の Tab SDK で取得されたユーザーのコンテキスト情報が表示されます。 </p>
+
+    <button id="visibleCtrlButton">全ての情報を表示/非表示</button>
+    <div id="display"></div>
+
+    <script>
+        let $id = (id) => { return document.getElementById(id); }
+        let display, videoFrame, videoContainer;
+
+        //microsoftTeams クラスの初期化(v2.0 から promise を返す)
+        microsoftTeams.app.initialize().then(() => {
+
+            //Microsoft Teams のユーザーコンテキストを取得
+            //※ v2.0 から promise を返すはずですが、2022月12月現在そうなっていないのでコールバック関数で context を取得
+            microsoftTeams.getContext((context) => {
+                //このサンプルでは取得した context を表を描画する関数 renderGrid に引数として渡していますが、
+                //この箇所で const userPrincipalName = context.userPrincipalName; のような記述でプロパティにアクセスできます。
+                $id('display').appendChild(renderGrid(context));
+            });
+
+            //[表示/非表示] ボタンのクリック時のアクション
+            $id('visibleCtrlButton').addEventListener('click', () => {
+                const otherRows = document.querySelectorAll('.other-data');
+                for (const row of otherRows) {
+                    if (row.style.display) {
+                        row.style.display = (row.style.display == 'table-row') ? 'none' : 'table-row';
+                    } else {
+                        row.style.display = 'table-row';
+                    }
+                }
+
+            });
+            // URL に付加された色名から背景色を設定
+            ((qString) => {
+                document.body.style.backgroundColor = (qString) ? (qString.substr(1, qString.length - 1)) : '';
+            })(window.location.search);
+            /*ここに演習 3-2 で コードを追加*/
+
+        });
+        
+
+        //オブジェクトのプロパティ名を値を列挙して表 (table エレメントとして返す)
+        function renderGrid(obj) {
+            const table = document.createElement('table'),
+                headerTr = document.createElement('tr'),
+                nameTh = document.createElement('th'),
+                valueTh = document.createElement('th');
+            nameTh.innerText = 'プロパティ名';
+            valueTh.innerText = '値';
+            headerTr.appendChild(nameTh);
+            headerTr.appendChild(valueTh);
+            table.appendChild(headerTr);
+
+            for (let propName in obj) {
+                const tr = document.createElement('tr'),
+                    nameTd = document.createElement('td'),
+                    valueTd = document.createElement('td');
+                nameTd.innerText = propName;
+                if (propName === 'userPrincipalName' || propName === 'userObjectId'
+                    || propName === 'locale' || propName === 'theme' || propName == 'loginHint'
+                    || propName == 'hostClientType' || propName === 'teamSiteDomain'
+                    || propName === 'tid') {
+                    valueTd.className = 'context-data';
+                } else {
+                    tr.className = 'other-data';
+                }
+
+                if (obj[propName] instanceof Object) {
+                    valueTd.appendChild(renderGrid(obj[propName]));
+                } else {
+                    valueTd.innerText = obj[propName];
+                }
+                tr.appendChild(nameTd);
+                tr.appendChild(valueTd);
+                table.appendChild(tr);
+            }
+            return table;
+        }
+
+    </script>
+</body>
+
+</html>

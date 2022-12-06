@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Microsoft Teams JavaScript API (via CDN) -->
+    <script src="https://statics.teams.microsoft.com/sdk/v1.5.2/js/MicrosoftTeams.min.js"
+        crossorigin="anonymous"></script>
+    <!--SDK v2.0 が正しく動作しないため v1.5.2 を使用-->
+    <style>
+        button {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>またのご利用をお待ちしております。</h1>
+    
+    <button onclick="onClick()">このタブを削除</button>
+    <script>
+        microsoftTeams.initialize();
+        microsoftTeams.settings.registerOnRemoveHandler((removeEvent) => {
+            microsoftTeams.settings.getSettings((settings) => {
+            settings.contentUrl = 'https://ngrokのドメイン名/index.html'
+            });
+            removeEvent.notifySuccess();
+        });
+    
+        const onClick = () => {
+            microsoftTeams.settings.setValidityState(true);
+        }
+
+      </script>
+</body>
+</html>
