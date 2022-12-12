@@ -65,6 +65,8 @@
     npm install ngrok -g
     ```
 
+    インストール完了後、ngrok - [Online in One Line](https://ngrok.com/)にアクセスいただき、同ページ内にある \[**Sign up for free**\] ボタンをクリックし、auth トークンを入手し、必要な設定を行ってください
+
 <br />
 
 ## 目次
