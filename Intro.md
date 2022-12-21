@@ -75,7 +75,7 @@ Microsoft Teams for Education では、教職員が新しくチームを作成�
 
 また同様に Microsoft Graph API の一般的な使い方については以下のチュートリアルご参照ください。
 
-* [**Microsoft Graph API を使用するための簡易チュートリアル**](Firstway_to_MSTeamsGraphAPI)
+* [**Microsoft Graph API を使用するための簡易チュートリアル**](https://github.com/osamum/Firstway_to_MSTeamsGraphAPI)
 
 
 <br><br>
@@ -121,7 +121,7 @@ Teams アプリの形態には、タブ アプリ、ボット アプリ、メッ
 
 このチュートリアルでは、演習 1) で、Graph API を使用した Microsoft Teams for Education リソースの一覧の取得や参照、新規作成といった機能を REST クライアントツールを使用して学習し、演習 2)では SPA (Single Page Application) の機能として実装します。演習 3) で、同 SPA を　Microsoft Teams との SSO (Single Sign On) の機能を持ち、Graph API を使用して Teams for Education のリソースを操作するタブ アプリケーションを作成します。
 
-この 2 つの演習を完了することにより、Microsoft Teams for Education と既存のサービスを連携するための具体的な手順や知識を身に着けることができます。
+この 3 つの演習を完了することにより、Microsoft Teams for Education と既存のサービスを連携するための具体的な手順や知識を身に着けることができます。
 
 <br><br>
 
