@@ -40,7 +40,7 @@
 
     現在、新規で作成した Office 365 A1 アカウントにて Graph API を呼び出すと HTTP 400 エラーが返り使用できないという問題が発生しています。これを回避するために以下の手順を実施します。
 
-    1. Web ブラウザーで [Microsoft 365 管理センター](https://admin.microsoft.com/)にアクセスと、画面左のメニューブレードより \[[**すべての管理センター**](https://admin.microsoft.com/Adminportal/Home#/alladmincenters)\] メニューをクリックします
+    1. Web ブラウザーで [Microsoft 365 管理センター](https://admin.microsoft.com/)にアクセスし、画面左のメニューブレードより \[[**すべての管理センター**](https://admin.microsoft.com/Adminportal/Home#/alladmincenters)\] メニューをクリックします
 
     2. 画面右に、管理センターのメニュー一覧が表示されるので、\[**学校データ同期**\] をクリックします
 
