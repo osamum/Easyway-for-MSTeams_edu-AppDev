@@ -25,6 +25,7 @@
 
     * [Microsoft 365 Educationサブスクリプションの学術資格を確認する](https://docs.microsoft.com/ja-jp/microsoft-365/commerce/subscriptions/verify-academic-eligibility?view=o365-worldwide)
 
+
 * **Microsoft Teams 管理センターでサイドローディングの許可**
 
     Microsoft Teams 管理センターにて、開発したアプリケーションがサイドローディングできるように許可を行ってください。
@@ -34,6 +35,22 @@
     <img src="images/22Sep_allowCustomApp.png" width="300">
 
     画面下部にある \[**保存**(英:Save)\] ボタンをクリックして設定を保存してください。
+
+* **SDS (School Data Sync : 学校データ同期) 画面の表示**
+
+    現在、新規で作成した Office 365 A1 アカウントにて Graph API を呼び出すと HTTP 400 エラーが返り使用できないという問題が発生しています。これを回避するために以下の手順を実施します。
+
+    1. Web ブラウザーで [Microsoft 365 管理センター](https://admin.microsoft.com/)にアクセスと、画面左のメニューブレードより \[[**すべての管理センター**](https://admin.microsoft.com/Adminportal/Home#/alladmincenters)\] メニューをクリックします
+
+    2. 画面右に、管理センターのメニュー一覧が表示されるので、\[**学校データ同期**\] をクリックします
+
+        <img src="images/22Jan_enableSDS.png" width="1000px">
+
+    以上の手順で回避作は完了です。\[学校データ同期(クラシック)\]　の画面が表示されますが、そのまま閉じてしまってかまいません。
+
+    この作業以降、Graph API を呼び出しても HTTP 400 エラーは発生せず、新規に作成した Teams for Education のリソースに Graph API からアクセスすることが可能になます。
+
+    ただし、この作業を行う以前に作成された Teams for Education のリソースは Graph API から検出できませんので注意が必要です。
 
 
 * **[Visual Studio Code](https://code.visualstudio.com/Download)**
